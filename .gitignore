@@ -1,0 +1,15 @@
+#caches'
+__pycache__/
+.cache
+.pytest_cache/
+
+
+# VSCode settings
+.vscode/
+
+#VStudio
+.vs/
+
+# Logs and coverage
+*.log
+
