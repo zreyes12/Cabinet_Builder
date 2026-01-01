@@ -64,12 +64,20 @@ class App(tk.Tk):
     #####################################################################################
     def setup_container(self):
 
-        self.container = tk.Frame(self)
+        self.container = tk.Frame(
+            self,
+        )
         self.container.pack(fill="both", expand=True)
-        self.container.grid_rowconfigure(0, weight=1)
-        self.container.grid_columnconfigure(0, weight=1)
 
+        self.sidebar = tk.Frame(self.container, width=200, bg="#333")
+        self.sidebar.pack(side="left", fill="y")
 
+        # View area (THIS goes to ViewManager)
+        self.view_area = tk.Frame(self.container)
+        self.view_area.pack(fill="both", expand=True)
+
+        self.view_area.grid_rowconfigure(0, weight=1)
+        self.view_area.grid_columnconfigure(0, weight=1)
 
     #####################################################################################
     #
@@ -80,7 +88,7 @@ class App(tk.Tk):
     #####################################################################################
     def setup_managers(self):
 
-        self.view_manager = ViewManager(self.container, self)
+        self.view_manager = ViewManager(self.view_area, self)
         self.view_manager.set_view("Home")
         self.app_state = AppState()
 

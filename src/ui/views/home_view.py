@@ -10,6 +10,7 @@
 import configs.constants as C
 import tkinter as tk
 from tkinter import ttk
+from ui.views.base_view import BaseView
 from ui.alert_manager import AlertManager
 
 #########################################################################################
@@ -19,7 +20,7 @@ from ui.alert_manager import AlertManager
 #   Purpose: wrapper class for handling the home view.
 #
 #########################################################################################
-class HomeFrame(tk.Frame):
+class HomeFrame(BaseView):
 
 
     #####################################################################################
@@ -27,7 +28,7 @@ class HomeFrame(tk.Frame):
     #####################################################################################
     def __init__(self, parent, controller):
 
-        super().__init__(parent, bg="green")
+        super().__init__(parent, controller)
 
         self.controller = controller
         self.dynamic_widgets = []
@@ -68,8 +69,31 @@ class HomeFrame(tk.Frame):
     #####################################################################################
     def build(self):
 
-        self.cabinet_specs_parent_frame = tk.Frame(
+        self.home_border_frame = tk.Frame(
             self,
+            **C.PARENT_BORDER_FRAME_STYLE
+        )
+
+        self.home_border_frame.pack(fill="both", expand=True)
+        self.home_border_frame.grid_rowconfigure(0, weight=1)
+        self.home_border_frame.grid_columnconfigure(0, weight=1)
+
+        self.home_child_frame = tk.Frame(
+            self.home_border_frame,
+            **C.CHILD_FRAME_STYLE
+        )
+
+        self.home_child_frame.pack(fill="both", expand=True)
+        self.home_child_frame.grid_rowconfigure(0, weight=1)
+        self.home_child_frame.grid_columnconfigure(0, weight=1)
+
+
+
+
+
+
+        self.cabinet_specs_parent_frame = tk.Frame(
+            self.home_child_frame,
             **C.PARENT_FRAME_STYLE
         )
 
@@ -135,7 +159,7 @@ class HomeFrame(tk.Frame):
 
 
         self.graph_area = tk.Frame(
-            self,
+            self.home_child_frame,
             bg = "green"
         )
 

@@ -28,9 +28,9 @@ class ViewManager:
     #####################################################################################
     #   Procedure: __init__
     #####################################################################################
-    def __init__(self, container, controller):
+    def __init__(self, parent, controller):
 
-        self.container = container
+        self.parent = parent
         self.controller = controller
         self.views = {}
         self.current_view = None
@@ -40,6 +40,8 @@ class ViewManager:
             "Settings": SettingsFrame,
         }
 
+        if parent.pack_slaves():
+            raise RuntimeError("ViewManager parent has packed widgets.")
         self.init_views()
 
 
@@ -55,7 +57,7 @@ class ViewManager:
 
         for name, FrameClass in self.views.items():
 
-            view = FrameClass(parent=self.container, controller=self.controller)
+            view = FrameClass(self.parent, controller=self.controller)
             self.views[name] = view
             view.grid(row=0, column=0, sticky="nsew")
 
