@@ -9,7 +9,6 @@
 
 import configs.constants as C
 import tkinter as tk
-from ui.menu_bar import MenuBarConfig
 from ui.views.home_view import HomeFrame
 from ui.views.settings_view import SettingsFrame
 
@@ -41,7 +40,9 @@ class ViewManager:
         }
 
         if parent.pack_slaves():
-            raise RuntimeError("ViewManager parent has packed widgets.")
+            raise RuntimeError("ViewManager parent has packed widgets already.")
+
+
         self.init_views()
 
 
@@ -87,7 +88,8 @@ class ViewManager:
     #####################################################################################
     def get_current_view(self):
 
-        return self.views.get(self.current_view)
+        # `self.current_view` stores the view instance, so return it directly.
+        return self.current_view
 
 
 

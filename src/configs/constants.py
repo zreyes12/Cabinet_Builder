@@ -162,8 +162,14 @@ COMMON_WIDTHS = {
 }
 
 #Common Cabinet Sizes Uppers
-SLIM_UPPER_DEPTH             = 12
-OVER_FRIDGE_UPPER_DEPTH      = 24
+SLIM_UPPER_DEPTH = {
+    "a": 12
+}
+
+OVER_FRIDGE_UPPER_DEPTH = {
+    "a": 24
+}
+
 
 SLIM_UPPER_HEIGHT = {
     "a" : 12,
@@ -224,6 +230,44 @@ PANTRY_UPPER_DEPTH = {
     "m" : 24
 }
 
+
+CABINET_PROFILES = {
+    "upper": {
+        "height": SLIM_UPPER_HEIGHT,
+        "width":  COMMON_WIDTHS,
+        "depth":  SLIM_UPPER_DEPTH,
+    },
+
+    "lower": {
+        "height": {
+            "a": STANDARD_BASE_HEIGHT,
+            "b": TALL_BASE_HEIGHT,
+        },
+        "width": COMMON_WIDTHS,
+        "depth": {
+            "a": STANDARD_BASE_DEPTH,
+            "b": STANDARD_BASE_BATHROOM_DEPTH,
+        },
+    },
+
+    "over_fridge": {
+        "height": OVER_FRIDGE_UPPER_HEIGHT,
+        "width":  COMMON_WIDTHS,
+        "depth":  OVER_FRIDGE_UPPER_DEPTH,
+    },
+
+    "pantry": {
+        "height": PANTRY_UPPER_HEIGHT,
+        "width":  COMMON_WIDTHS,
+        "depth":  PANTRY_UPPER_DEPTH,
+    },
+
+    "custom": {
+        "height": {},
+        "width": {},
+        "depth": {},
+    },
+}
 
 #Cabinet components
 FACE_THICKNESS               = HARDWOOD_THICKNESS
